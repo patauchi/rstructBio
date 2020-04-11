@@ -26,10 +26,8 @@ shinyUI(
                           tabPanel("Rank Abundance Distribution", ini_RAD)),
                navbarMenu("Multivariate",
                           tabPanel("Cluster", ini_Cluster),
-                          tabPanel("Unconstrained ordination", ini_Unconstrained),
-                          tabPanel("Canonical ordination"),
-                          tabPanel("Canonical correspondence"),
-                          tabPanel("Detrended correspondence analysis"))
+                          tabPanel("Unconstrained Ordination", ini_Unconstrained),
+                          tabPanel("Constrained Ordination"))
                )
 )
 
