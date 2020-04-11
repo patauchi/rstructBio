@@ -4,7 +4,7 @@ load_ui <- sapply(ui_files,source)
 
 
 shinyUI(
-    navbarPage(theme=shinytheme('cerulean'),
+    navbarPage(theme=shinythemes::shinytheme('cerulean'),
                p('ShinyApp: Ecological Analysis', style="font-size:15px;text-align:justify;"),
                tabPanel('Introduction', introduction),
                navbarMenu("Data",
@@ -18,7 +18,6 @@ shinyUI(
                           tabPanel("Normality", ini_normality),
                           tabPanel("Parametric Tets", ini_parametric),
                           tabPanel("Non Parametric Tets", ini_noparametric),
-
                           tabPanel("Correlation/Association Test", ini_collinearity)),
                navbarMenu("Diversity",
                           tabPanel("Diversity indices", ini_diversity),

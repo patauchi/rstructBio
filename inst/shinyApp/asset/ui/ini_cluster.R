@@ -73,7 +73,7 @@ ini_Cluster <- sidebarLayout(position = 'left',
                                                    "UPGMC"="centroid")),
 
                            actionButton("run_dendro","Go!!!",styleclass = "primary"),
-                           busyIndicator("Loading...",wait = 0),
+                           shinysky::busyIndicator("Loading...",wait = 0),
 
 
 

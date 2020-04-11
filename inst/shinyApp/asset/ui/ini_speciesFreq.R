@@ -7,7 +7,7 @@ ini_speciesFreq <- sidebarLayout(position = 'left',
                              style="font-size:13px"),
 
                            actionButton("run_plotSFD","Summary SF",styleclass = "primary"),
-                           busyIndicator("Loading...",wait = 0),
+                           shinysky::busyIndicator("Loading...",wait = 0),
 
 
 

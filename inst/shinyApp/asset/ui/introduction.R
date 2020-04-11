@@ -14,7 +14,7 @@ introduction <- sidebarLayout(position = 'left',
 
 
 
-                               busyIndicator("Loading...",wait = 0),
+                               shinysky::busyIndicator("Loading...",wait = 0),
                                width=4),
 
                              mainPanel(

@@ -13,7 +13,7 @@ ini_BetaDiv <- sidebarLayout(position = 'left',
 
                            h4("data Loading"),
                            actionButton("run_calc_beta","Go!!!",styleclass = "primary"),
-                           busyIndicator("Loading...",wait = 0),
+                           shinysky::busyIndicator("Loading...",wait = 0),
 
 
                            h4("Diversity Plot"),

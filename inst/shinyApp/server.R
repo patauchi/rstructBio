@@ -1,7 +1,3 @@
-library(shiny)
-library(shinysky)
-library(shinythemes)
-library(DT)
 
 shinyServer(function(input, output, session) {
   source('./asset/serv/fun_complement.R', local=TRUE)
@@ -21,6 +17,4 @@ shinyServer(function(input, output, session) {
   source('./asset/serv/fun_setting.R', local=TRUE)
   source('./asset/serv/fun_speciesFreq.R', local=TRUE)
   source('./asset/serv/fun_unconstrained.R', local=TRUE)
-
-
 })

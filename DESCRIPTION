@@ -10,4 +10,5 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 dependency: shiny
-RoxygenNote: 7.0.0
+suggestions: shinybusy
+RoxygenNote: 7.1.0

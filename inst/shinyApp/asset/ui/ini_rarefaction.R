@@ -54,7 +54,7 @@ ini_rarefaction <- sidebarLayout(position = "left",
 
 
                                     ),
-                                    bsButton("run_raferaction",  "Run",   icon = icon("upload", lib = "glyphicon"),  style = "primary"),
+                                    shinyBS::bsButton("run_raferaction",  "Run",   icon = icon("upload", lib = "glyphicon"),  style = "primary"),
 
 
 

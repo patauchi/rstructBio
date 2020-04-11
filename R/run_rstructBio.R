@@ -16,10 +16,10 @@ run_rstructBio <- function(){
   cat("\n\n")
   cat("|----------------------------------------------------------------|\n")
   cat("|      **** Welcome to rstructBio version", paste0(utils::packageVersion("rstructBio"),
-                                                            " ****         |\n"))
+                                                            " ****             |\n"))
   cat("|----------------------------------------------------------------|\n")
-  cat("|      Looking for additional nichetoolbox dependencies          |\n")
-  cat("|      Note that the first time it can take few seconds          |\n")
+  cat("|      Looking for additional rstructBio dependencies            |\n")
+  cat("|                                                                |\n")
   cat("|----------------------------------------------------------------|\n\n\n")
 
   rtools_inst <- devtools::has_devel()
