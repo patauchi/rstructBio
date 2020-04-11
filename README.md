@@ -1,6 +1,6 @@
 # rstructBio: An ShinyApp for Ecological Analysis
 
-`rstructBio` is an R package with a friendly Graphical User Interface (GUI) developed using shiny framework. The package aims to facilitate the process of ecolgoical univarite and multivariate analysis.
+`rstructBio` is an R package with a friendly Graphical User Interface (GUI) developed using shiny framework. The package aims to facilitate the process of ecological univarite and multivariate analysis.
 
 # Instalation
 
