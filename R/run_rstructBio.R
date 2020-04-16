@@ -1,9 +1,9 @@
 #' Function to run NicheToolBox shinyApp
 #' @description This function initiates rstructBio GUI
 #' @export
-#' @examples
+#' @examples 
 #' # Run rstructBio package
-#' # run_rstructBio()
+#' # run_rstructBio() 
 run_rstructBio <- function(){
   app_path <- .check_install()
   return(shiny::runApp(app_path))
