@@ -1,4 +1,4 @@
-#' Function to run NicheToolBox shinyApp
+#' Function to run rstructBio shinyApp
 #' @description This function initiates rstructBio GUI
 #' @export
 #' @examples 
