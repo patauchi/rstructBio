@@ -1,4 +1,4 @@
-pkg_check <- c("shiny","qqplotr","shinyBS","tidyverse")
+pkg_check <- c("shiny","qqplotr","shinyBS","tidyverse","shinysky")
 
 pkgs_ntb_miss <- pkg_check[!(pkg_check %in% installed.packages())]
 
