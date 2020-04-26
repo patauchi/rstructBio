@@ -1,5 +1,6 @@
 
 shinyServer(function(input, output, session) {
+  source('./load_install_pkgs.R', local=TRUE)
   source('./asset/serv/fun_xr.R', local=TRUE)
   source('./asset/serv/fun_complement.R', local=TRUE)
   source('./asset/serv/fun_parametric.R', local=TRUE)
