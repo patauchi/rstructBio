@@ -1,10 +1,10 @@
-#Package: rstructBio
-#Type: Package
-#Title: Analysis of Communities Structure from Ecological Data
-#Version: 0.1.0-1
-#Author: P. Joser Atauchi
-#Maintainer: P. Joser Atauchi <patauchi@gmail.com>
-#Description: More about what it does (maybe more than one line)
+Package: rstructBio
+Type: Package
+Title: Analysis of Communities Structure from Ecological Data
+Version: 0.1.0-1
+Author: P. Joser Atauchi
+Maintainer: P. Joser Atauchi <patauchi@gmail.com>
+Description: More about what it does (maybe more than one line)
     Use four spaces when indenting     paragraphs within the Description.
 License: GPL-3
 Encoding: UTF-8
