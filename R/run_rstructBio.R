@@ -39,3 +39,9 @@ run_rstructBio <- function(){
   app_path <- system.file("shinyApp",package = "rstructBio")
   return(app_path)
 }
+
+.onAttach <- function(libname, pkgname) {
+  tv <- utils::packageVersion("rstructBio")
+  m <- paste0("This is version ", tv, " of the \"rstructBio\" package, for testing only\n")
+  packageStartupMessage(m)
+}

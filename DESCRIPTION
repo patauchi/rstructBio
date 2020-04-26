@@ -5,11 +5,11 @@ Version: 0.1.0-0
 Author: P. Joser Atauchi
 Maintainer: P. Joser Atauchi <patauchi@gmail.com>
 Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+    Use four spaces when indenting     paragraphs within the Description.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 dependency: shiny
 suggestions: shinybusy
 RoxygenNote: 7.1.0
-Importing: devtools, dplyr, ggplot2, ellipse
+Imports: devtools, dplyr, ggplot2,shiny
