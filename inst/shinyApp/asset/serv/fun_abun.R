@@ -1,10 +1,4 @@
-
-#library(readr)
-#output$myname <- renderText(input$name)
-#output$myage <- renderText(input$age)
-
 df_products_upload <- reactive({
-
   if (is.null(input$fileUser))
     return(NULL)
   else if (identical(input$format, 'CSV')){
@@ -12,10 +6,6 @@ df_products_upload <- reactive({
     rownames(dat) <- dat[,1]
     dat <- dat[,-1]
   }
-
-  #else if (identical(input$format, 'XLSX'))
-  #  dat <- read.xls(input$fileUser$datapath, input$sheet)
-
   else
     dat <- read.delim(input$fileUser$datapath,fill = TRUE)
 
@@ -31,7 +21,6 @@ output$UploadTable <- DT::renderDataTable({
   dat <- df_products_upload()
   DT::datatable(dat, options = list(scrollY = '280px', pageLength = 1000,
                                     dom='t'))
-  
 })
 
 
@@ -58,7 +47,16 @@ Exp_abunSumm <- reactive({
 })
 
 output$AbundSummary <- renderPrint({
-  Exp_abunSumm()
+  if(!is.null(datasetInput())){
+    Exp_abunSumm()
+  }else{
+    cat('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n')
+    cat('                              IMPORT ABUNDANCE DATASET                              \n\n')
+    cat('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n')
+}
+  
 })
+
+
 
 

@@ -7,20 +7,17 @@ vars_names <- c("Extract sites "=1)
 
 ini_boxplot <- sidebarLayout(position = 'left',
                                sidebarPanel(
-                                 h4("Analysis of Outliers"),
+                                 h3("Boxplots"),
                                  br(),
                                  p("This application was create to analyze and visualize ecological data",
                                    style="font-size:13px"),
                                  p(""),
                                  br(),
-                                 #textInput("name","Enter your name", ""),
-                                 #textInput("age","Enter your age",""),
                                  h4("Dataset"),
-
                                  selectInput("datasetBx",
                                              label="Choose a dataset :",
                                              choices=c("Species", "Environmental")),
-                                 selectInput("SetsBox","Select at Community",
+                                 selectInput("SetsBox","Select at variables",
                                              choices = vars_names,
                                              multiple = TRUE),
                                  br(),

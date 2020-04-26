@@ -1,13 +1,21 @@
 
 ini_speciesFreq <- sidebarLayout(position = 'left',
                          sidebarPanel(
-                           h4("data Loading"),
+                           h3("Histogram"),
                            br(),
                            p("This application was create to analyze and visualize ecological data",
                              style="font-size:13px"),
 
-                           actionButton("run_plotSFD","Summary SF",styleclass = "primary"),
-                           shinysky::busyIndicator("Loading...",wait = 0),
+                           #actionButton("run_plotSFD","Summary SF",styleclass = "primary"),
+                           
+                           selectInput("datasetHist",
+                                       label="Choose a dataset :",
+                                       choices=c("Species", "Environmental")),
+                           selectInput("SetsHist","Select at variables",
+                                       choices = vars_names,
+                                       multiple = TRUE),
+                           br(),
+                           br(),
                            width=4),
                          mainPanel(
                            tabsetPanel(

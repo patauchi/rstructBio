@@ -4,15 +4,14 @@ dataset <- list('Upload your data'= c(1))
 
 ini_abun <- sidebarLayout(position = 'left',
                              sidebarPanel(
-                               h3("rstructBio"),
+                               h3("Importing Data"),
                                br(),
                                p("This application was create to analyze and visualize ecological data",
                                  style="font-size:13px"),
-                               p(""),
                                br(),
-                              h4("data Loading"),
-                               tags$div(title="Select the format of your occs data base",
-                                        radioButtons('format', 'Format', c('CSV', 'TSV'))),
+                               tags$div(title="Select the format of your data base",
+                                        radioButtons('format', 'Format', c('CSV'))),
+                               
                                #uiOutput("radio"),
                                fileInput('fileUser', 'Data file'),
 
@@ -24,7 +23,6 @@ ini_abun <- sidebarLayout(position = 'left',
                                br(),
                                dataTableOutput("UploadTable"),
                                br(),
-                               verbatimTextOutput(outputId = "AbundSummary"),
-                               
-                               
+                               verbatimTextOutput(outputId = "AbundSummary")
+                              
                              ))

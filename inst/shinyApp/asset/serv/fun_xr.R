@@ -117,3 +117,27 @@ nPlot <- function(){
   plot(x,y,type="n", xlab="No Data", ylab="No data",cex=2)
   text(0,0,messages,cex=3 )
 }
+
+
+#' Empty Data
+#'
+#' @description Empty data
+#'
+#' nData
+#'
+#' @details The function \code{nPlot} return empty plot.
+#' @export
+nData <- function(){
+  messages <- "Import Data"
+  x <- -10:10
+  y <- x
+  plot(x,y,type="n", xlab="No Data", ylab="No data",cex=2)
+  text(0,0,messages,cex=3 )
+}
+
+
+
+
+
+
+

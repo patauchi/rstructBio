@@ -1,3 +1,27 @@
+# datasetInput
+datasetInput <- reactive({
+  switch(input$datasetBx,
+         "Species" = df_products_upload(),
+         "Environmental" = df_env())
+})
+
+observe({
+  if(input$datasetBx == "Species"){
+    var_suggest <- rownames(df_products_upload())
+    updateSelectInput(session, "SetsHist",
+                      choices = rownames(df_products_upload()),
+                      selected = var_suggest)
+  }
+  if(input$datasetBx == "Environmental"){
+    var_suggest <- colnames(df_env())
+    updateSelectInput(session, "SetsHist",
+                      choices = colnames(df_env()),
+                      selected = var_suggest)
+  }
+})
+
+
+
 
 
 ext_summarySpecies <- eventReactive(input$run_plotSFD, {
@@ -25,11 +49,16 @@ ext_summarySpecies <- eventReactive(input$run_plotSFD, {
 
 
 
+
+
+
+
+
 # plot histgram
 output$histgram <- renderPlot({
   if(!is.null(datasetInput())){
     abss <- ext_summarySpecies()[[3]]
-    plot(abss)
+    suppressWarnings(plot(abss))
   }else{ nPlot() }
 
 })
@@ -64,8 +93,10 @@ output$summaryRangeSp <- DT::renderDataTable({
 
 
 
-uiOutput("ui_bugfixer")
 
+##### BUG
+
+uiOutput("ui_bugfixer")
 # for server
 dt_bugfixer_counter <- 0
 output$ui_bugfixer <- renderUI({
