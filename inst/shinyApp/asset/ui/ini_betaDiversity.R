@@ -25,7 +25,7 @@ ini_BetaDiv <- sidebarLayout(position = 'left',
                                                    "Sorensen"='sor')),
 
 
-                           width=3),
+                           width=4),
 
                          mainPanel(
                            #DT::dataTableOutput("user_table"),

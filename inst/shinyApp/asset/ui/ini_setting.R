@@ -10,16 +10,11 @@ ini_setting <- sidebarLayout(position = 'left',
                                  style="font-size:13px"),
                                p(""),
                                br(),
-                               #textInput("name","Enter your name", ""),
-                               #textInput("age","Enter your age",""),
-
-
-                               h4("data Loading"),
+                              h4("data Loading"),
                                tags$div(title="Select the format of your occs data base",
                                         radioButtons('format', 'Format', c('CSV', 'TSV'))),
                                #uiOutput("radio"),
                                fileInput('fileUser', 'Data file'),
-
 
                                shinysky::busyIndicator("Loading...",wait = 0),
                                width=3),

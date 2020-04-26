@@ -62,7 +62,7 @@ ini_rarefaction <- sidebarLayout(position = "left",
 
                                     br(),
 
-                                  ),
+                                    width=3),
                                   mainPanel(
                                     h4('No Parametric Tests'),
                                     br(),

@@ -280,7 +280,7 @@ ini_Unconstrained <- sidebarLayout(position = "left",
 
                              br(),
 
-                           ),
+                             width=3),
                            mainPanel(
                              #htmlOutput("page"),
                              plotOutput("niche_layers"),

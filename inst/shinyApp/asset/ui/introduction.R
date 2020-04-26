@@ -15,7 +15,7 @@ introduction <- sidebarLayout(position = 'left',
 
 
                                shinysky::busyIndicator("Loading...",wait = 0),
-                               width=4),
+                               width=3),
 
                              mainPanel(
                                #DT::dataTableOutput("user_table"),

@@ -117,7 +117,7 @@ ini_parametric <- sidebarLayout(position = "left",
 
                                     br(),
 
-                                    width=4),
+                                    width=3),
                                   mainPanel(
                                     h4('Parametric Tests'),
                                     br(),

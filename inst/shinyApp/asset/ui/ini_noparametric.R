@@ -112,7 +112,7 @@ ini_noparametric <- sidebarLayout(position = "left",
                                   ############################## END CAPSULES
                                   br(),
 
-                                ),
+                                  width=3),
                                 mainPanel(
                                   h4('No Parametric Tests'),
                                   br(),
