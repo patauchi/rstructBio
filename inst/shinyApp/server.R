@@ -16,7 +16,7 @@ shinyServer(function(input, output, session) {
   source('./asset/serv/fun_env.R', local=TRUE)
   source('./asset/serv/fun_normality.R', local=TRUE)
   source('./asset/serv/fun_RAD.R', local=TRUE)
-  source('./asset/serv/fun_setting.R', local=TRUE)
+  source('./asset/serv/fun_abun.R', local=TRUE)
   source('./asset/serv/fun_speciesFreq.R', local=TRUE)
   source('./asset/serv/fun_unconstrained.R', local=TRUE)
 })

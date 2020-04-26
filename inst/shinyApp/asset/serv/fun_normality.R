@@ -103,9 +103,7 @@ return(messPrin)
 
 
 Exp_NormTes <- reactive({
-
   ev<- eachVar()
-
   if(input$Normal_test=='shapiro') {t <- shapiro.test(ev)}
   if(input$Normal_test=='anderson') {t <- nortest::ad.test(ev)}
   if(input$Normal_test=='cramer') {t <- nortest::cvm.test(ev)}
@@ -116,15 +114,9 @@ Exp_NormTes <- reactive({
   if(input$Normal_test=='hegazy') {t <- normtest::hegazy1.norm.test(ev)}
   if(input$Normal_test=='kurtosis') {t <- normtest::kurtosis.norm.test(ev)}
   if(input$Normal_test=='skweness') {t <- normtest::skewness.norm.test(ev)}
-
-
   mt <- t$method
   pv <- t$p.value
-
   return(testRes(test=mt, pval=pv))
-
-
-
 })
 
 output$renderTest <- renderPrint({

@@ -8,7 +8,7 @@ shinyUI(
                p('ShinyApp: Ecological Analysis', style="font-size:15px;text-align:justify;"),
                tabPanel('Introduction', introduction),
                navbarMenu("Data",
-                          tabPanel('Species Abundance', ini_setting),
+                          tabPanel('Species Abundance', ini_abun),
                           tabPanel("Enviornmental Data", ini_env)),
                navbarMenu("Exploratory Analysis",
                           tabPanel('Species Frecuency', ini_speciesFreq),

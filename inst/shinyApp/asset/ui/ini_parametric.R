@@ -120,4 +120,4 @@ ini_parametric <- sidebarLayout(position = "left",
                                     verbatimTextOutput(outputId = "renderTestParametric"),
                                     verbatimTextOutput(outputId = "renderVarianceParametric")
                                   )
-)s
+)

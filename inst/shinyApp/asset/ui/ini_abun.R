@@ -2,7 +2,7 @@ osSystem <- Sys.info()["sysname"]
 
 dataset <- list('Upload your data'= c(1))
 
-ini_setting <- sidebarLayout(position = 'left',
+ini_abun <- sidebarLayout(position = 'left',
                              sidebarPanel(
                                h3("rstructBio"),
                                br(),
@@ -20,5 +20,11 @@ ini_setting <- sidebarLayout(position = 'left',
                                width=4),
 
                              mainPanel(
-                               dataTableOutput("UploadTable")
+                               h4('Abundance Data uploaded', align='center'),
+                               br(),
+                               dataTableOutput("UploadTable"),
+                               br(),
+                               verbatimTextOutput(outputId = "AbundSummary"),
+                               
+                               
                              ))
