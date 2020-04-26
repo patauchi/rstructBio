@@ -8,15 +8,10 @@ ini_RAD <- sidebarLayout(position = 'left',
                                    style="font-size:13px"),
                                  p(""),
                                  br(),
-                                 #textInput("name","Enter your name", ""),
-                                 #textInput("age","Enter your age",""),
-
 
                                  h4("data Loading"),
                                  actionButton("run_calc_RAD","Go!!!",styleclass = "primary"),
                                  shinysky::busyIndicator("Loading...",wait = 0),
-
-
                                  h4("Diversity Plot"),
                                  p("This application was create to analyze and visualize ecological data",
                                    style="font-size:13px"),
@@ -26,8 +21,6 @@ ini_RAD <- sidebarLayout(position = 'left',
                                                          "Log natural"="Log2",
                                                          "Logaritmo 10"="Log10",
                                                          "Relative Abundance"="Rel.Abun")),
-
-
                                  h4("Diversity Plot"),
                                  p("This application was create to analyze and visualize ecological data",
                                    style="font-size:13px"),
@@ -35,18 +28,10 @@ ini_RAD <- sidebarLayout(position = 'left',
                                  selectInput("RADIndex", "Select the diverisity index",
                                              choices = c("By Community"=1,
                                                          "Complete"=2)),
-
-
-
                                  selectInput("SiteComm","Select at Community",
                                              choices = layer_names_kmeans,
                                              multiple = FALSE),
-
-
-
-
-                                 width=3),
-
+                                 width=4),
                                mainPanel(
                                  #DT::dataTableOutput("user_table"),
                                  #textOutput("myname"),
@@ -61,7 +46,4 @@ ini_RAD <- sidebarLayout(position = 'left',
                                  h4("Plot Comparing"),
                                  br(),
                                  plotOutput("RADEach")
-
-
-
                                ))

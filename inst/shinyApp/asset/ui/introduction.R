@@ -9,14 +9,8 @@ introduction <- sidebarLayout(position = 'left',
                                p("rStructBio consists primarily of a wide range of univarite, graphical and multivariate routines for analysing
                                  array of species-by-sample data from community ecology. Data are typically of abundance, biomass, % area cover
                                  presence/absence, environemntal, and activity patterns"),
-
-                               #fileInput('fileUser', 'Choose file to upload'),
-
-
-
                                shinysky::busyIndicator("Loading...",wait = 0),
-                               width=3),
-
+                               width=4),
                              mainPanel(
                                #DT::dataTableOutput("user_table"),
                                #textOutput("myname"),

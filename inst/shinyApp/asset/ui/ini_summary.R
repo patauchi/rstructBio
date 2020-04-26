@@ -7,18 +7,9 @@ ini_summary <- sidebarLayout(position = 'left',
                                  style="font-size:13px"),
                                p(""),
                                br(),
-
-
-                               width=3),
-
+                               width=4),
                              mainPanel(
                                h4("Univariate statistics"),
                                br(),
                                dataTableOutput("SummaryStats"),
-                               #h4("Plot Comparing"),
-                               #sbr()
-                               #plotOutput("RADEach")
-
-
-
                              ))

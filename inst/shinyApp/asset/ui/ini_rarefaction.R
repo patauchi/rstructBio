@@ -13,7 +13,6 @@ ini_rarefaction <- sidebarLayout(position = "left",
                                              "will use as niche variables.")),
                                     br(),
                                     #directoryInput('ras_layers_directory', label = 'Select a raster layers directory'),
-
                                     h4("Dataset"),
                                     selectInput("InputRarefaction",
                                                 label="Choose a dataset :",
@@ -32,9 +31,6 @@ ini_rarefaction <- sidebarLayout(position = "left",
                                                 choices = c("Abundance "="abundance",
                                                             "Incidence Frequency"="incidence_freq",
                                                             "Incidence Raw"="incidence_raw")),
-
-
-
                                     ############################## BEGIN CAPSULES
                                     checkboxInput("getRarefactionP", label = "Advanced options: ",value = FALSE),
                                     conditionalPanel("input.getRarefactionP == true",
@@ -51,28 +47,16 @@ ini_rarefaction <- sidebarLayout(position = "left",
                                                                                      "A separate plot for each diversity"='order',
                                                                                      "A separate plot for each site"='site',
                                                                                      'A separate plot for each combination'='both')),
-
-
                                     ),
                                     shinyBS::bsButton("run_raferaction",  "Run",   icon = icon("upload", lib = "glyphicon"),  style = "primary"),
-
-
-
-                                    ############################## END CAPSULES
-
+                                    ############################## END CAPSULESs
                                     br(),
-
-                                    width=3),
+                                    width=4),
                                   mainPanel(
                                     h4('No Parametric Tests'),
                                     br(),
                                     #verbatimTextOutput(outputId = "rendertwoDistribution"),
                                     plotOutput("plotRarefaction")
-
-
                                   )
 )
-
-
-
 

@@ -49,7 +49,7 @@ ini_collinearity <- sidebarLayout(position = "left",
                                             br()),
                                            ############################## END CAPSULES
                                            br(),
-                                  width=3),
+                                  width=4),
                                          mainPanel(
                                            #htmlOutput("page"),
                                            #plotOutput("niche_layers"),

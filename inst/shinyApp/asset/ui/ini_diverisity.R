@@ -7,10 +7,6 @@ ini_diversity <- sidebarLayout(position = 'left',
                                  style="font-size:13px"),
                                p(""),
                                br(),
-                               #textInput("name","Enter your name", ""),
-                               #textInput("age","Enter your age",""),
-
-
                                h4("data Loading"),
                                actionButton("run_calc_diversity","Go!!!",styleclass = "primary"),
                                shinysky::busyIndicator("Loading...",wait = 0),
@@ -26,13 +22,7 @@ ini_diversity <- sidebarLayout(position = 'left',
                                                        "Pilou_Eva"=4,
                                                        "Simpson"=5,
                                                        "InvSimpson"=6)),
-
-
-
-
-
-                               width=3),
-
+                               width=4),
                              mainPanel(
                                #DT::dataTableOutput("user_table"),
                                #textOutput("myname"),

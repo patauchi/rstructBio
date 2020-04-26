@@ -8,28 +8,7 @@ ini_speciesFreq <- sidebarLayout(position = 'left',
 
                            actionButton("run_plotSFD","Summary SF",styleclass = "primary"),
                            shinysky::busyIndicator("Loading...",wait = 0),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                           width=3),
-
+                           width=4),
                          mainPanel(
                            tabsetPanel(
                              tabPanel("Plots",
@@ -41,8 +20,5 @@ ini_speciesFreq <- sidebarLayout(position = 'left',
 
                                       h4('Summary Min and Max by Species'),
                                       dataTableOutput('summaryRangeSp'))
-
                            ),
-
-
                          ))

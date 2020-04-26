@@ -17,7 +17,7 @@ ini_setting <- sidebarLayout(position = 'left',
                                fileInput('fileUser', 'Data file'),
 
                                shinysky::busyIndicator("Loading...",wait = 0),
-                               width=3),
+                               width=4),
 
                              mainPanel(
                                dataTableOutput("UploadTable")

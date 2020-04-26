@@ -273,14 +273,9 @@ ini_Unconstrained <- sidebarLayout(position = "left",
                                               br(),
 
                              ),
-
                              ########################3##### END CAPSULES
-
-
-
                              br(),
-
-                             width=3),
+                             width=4),
                            mainPanel(
                              #htmlOutput("page"),
                              plotOutput("niche_layers"),

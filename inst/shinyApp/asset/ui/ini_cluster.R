@@ -17,8 +17,6 @@ ini_Cluster <- sidebarLayout(position = 'left',
                                        label="Choose a dataset :",
                                        choices=c("Species", "Environmental")),
 
-
-
                            h4("Diversity Plot"),
                            p("This application was create to analyze and visualize ecological data",
                              style="font-size:13px"),
@@ -74,12 +72,7 @@ ini_Cluster <- sidebarLayout(position = 'left',
 
                            actionButton("run_dendro","Go!!!",styleclass = "primary"),
                            shinysky::busyIndicator("Loading...",wait = 0),
-
-
-
-
-                           width=3),
-
+                           width=4),
                          mainPanel(
                            #DT::dataTableOutput("user_table"),
                            #textOutput("myname"),
@@ -87,7 +80,4 @@ ini_Cluster <- sidebarLayout(position = 'left',
                            h4("Dendrogram"),
                            br(),
                            plotOutput('plotDendro')
-
-
-
                          ))

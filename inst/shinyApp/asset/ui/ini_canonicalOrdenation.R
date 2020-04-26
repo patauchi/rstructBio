@@ -291,16 +291,10 @@ ini_canonicalOrdenation <- sidebarLayout(position = "left",
                                                                style = "primary"),
                                                       shinysky::busyIndicator("Loading...",wait = 0),
                                                       br(),
-
                                      ),
-
                                      ########################3##### END CAPSULES
-
-
-
                                      br(),
-
-                                     width=3),
+                                     width=4),
                                    mainPanel(
                                      #htmlOutput("page"),
                                      plotOutput("niche_layers"),

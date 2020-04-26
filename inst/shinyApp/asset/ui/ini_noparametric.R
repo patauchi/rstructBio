@@ -101,9 +101,8 @@ ini_noparametric <- sidebarLayout(position = "left",
                                                                                         label =  "Select a post-ho method",
                                                                                         choices = c('None'='none',
                                                                                                     'Nemenyi Test'='friedmanNemenyiTest',
-                                                                                                    "Conover's Test"='friedmanConoverTest')),
+                                                                                                 "Conover's Test"='friedmanConoverTest')),
                                                    ),
-
                                                    br(),
                                                    shinyBS::bsButton("runParMeans","Run",icon = icon("upload", lib = "glyphicon"),style = "primary"),
                                                    shinysky::busyIndicator("Loading...",wait = 0),
@@ -111,8 +110,7 @@ ini_noparametric <- sidebarLayout(position = "left",
                                   ),
                                   ############################## END CAPSULES
                                   br(),
-
-                                  width=3),
+                                  width=4),
                                 mainPanel(
                                   h4('No Parametric Tests'),
                                   br(),

@@ -111,21 +111,13 @@ ini_parametric <- sidebarLayout(position = "left",
                                                      br(),
 
                                     ),
-
                                     ############################## END CAPSULES
-
-
                                     br(),
-
-                                    width=3),
+                                    width=4),
                                   mainPanel(
                                     h4('Parametric Tests'),
                                     br(),
                                     verbatimTextOutput(outputId = "renderTestParametric"),
                                     verbatimTextOutput(outputId = "renderVarianceParametric")
                                   )
-)
-
-
-
-
+)s

@@ -73,25 +73,17 @@ ini_normality <- sidebarLayout(position = 'left',
                                                    "Hegazy-Green Test"="hegazy",
                                                    "Kurtosis Test"="kurtosis",
                                                    "Skewness Test"="skweness")),
-
-
-                           width=3),
-
+                           width=4),
                          mainPanel(
                            tabsetPanel(
                              tabPanel("Plots",
-
                                       conditionalPanel("input.test_fit=='histNorm'",
                                                        plotOutput('histogramPlot')
                                       ),
                                       conditionalPanel("input.test_fit=='qqplotNorm'",
                                                        plotOutput('QQplotEnv')
                                       ),
-
-
                              ),
-
-
                              tabPanel("Summary",
                                       h4('Summary of Minimum and Maximum Abundance'),
                                       #verbatimTextOutput("test"),
@@ -99,12 +91,8 @@ ini_normality <- sidebarLayout(position = 'left',
                                       h4('Summary Min and Max by Species'),
                                       #dataTableOutput('summaryRangeSp', width = "600px")
                                       )),
-
                            br(),
                            h4('Normality Test'),
                            br(),
                            verbatimTextOutput(outputId = "renderTest"),
-
-
-
                          ))
