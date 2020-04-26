@@ -12,4 +12,4 @@ LazyData: true
 dependency: shiny
 suggestions: shinybusy
 RoxygenNote: 7.1.0
-Imports: devtools, dplyr, ggplot2,shiny
+Imports: devtools, dplyr, ggplot2, shiny
