@@ -1,6 +1,6 @@
 Package: rstructBio
 Type: Package
-Title: Structure Biological Data and Analysis
+Title: Analysis of Communities Structure from Ecological Data.
 Version: 0.1.0-0
 Author: P. Joser Atauchi
 Maintainer: P. Joser Atauchi <patauchi@gmail.com>

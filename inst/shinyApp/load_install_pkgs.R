@@ -1,4 +1,4 @@
-pkg_check <- c("shiny","ggplot2","shinyBS","dplyr","shinysky","devtools")
+pkg_check <- c("shiny","ggplot2","shinyBS","dplyr","shinysky","devtools","iNEXT")
 
 pkgs_ntb_miss <- pkg_check[!(pkg_check %in% installed.packages())]
 
