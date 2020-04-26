@@ -72,21 +72,19 @@ output$plotRAD <- renderPlot({
 
 output$RADEach <- renderPlot({
 
-  #methcol <- input$RADMethods
-
-  compl <- do.call(rbind, ext_RAD())
-
-
-  widedata <-  compl %>% filter(Community == input$SiteComm) %>% select("Ranks", input$RADMethods)
-  #longdata <- data.table::melt(widedata, id.vars="Ranks", value.name="Value_y")
-  colnames(widedata)  <- c('Ranks','Value_y')
-
-  fixPlo <- ggplot(data=widedata, aes_string(x="Ranks",y="Value_y")) +
-    geom_point() + ylab(paste(input$RADMethods))
-
-
-  #fixPlo <- compl %>% filter(Community == input$SiteComm) %>% ggplot(aes(x=Ranks, y=input$RADMethods)) + geom_point()
-  return(fixPlo)
+  if(!is.null(datasetInput())){
+    #methcol <- input$RADMethods
+    compl <- do.call(rbind, ext_RAD())
+    widedata <-  compl %>% filter(Community == input$SiteComm) %>% select("Ranks", input$RADMethods)
+    #longdata <- data.table::melt(widedata, id.vars="Ranks", value.name="Value_y")
+    colnames(widedata)  <- c('Ranks','Value_y')
+    fixPlo <- ggplot(data=widedata, aes_string(x="Ranks",y="Value_y")) +
+      geom_point() + ylab(paste(input$RADMethods))
+    #fixPlo <- compl %>% filter(Community == input$SiteComm) %>% ggplot(aes(x=Ranks, y=input$RADMethods)) + geom_point()
+    return(fixPlo)
+  }else{ nPlot() }
+  
+  
 
 })
 

@@ -23,11 +23,16 @@ data_dendr <- reactive({
 
 
 output$plotDendro <- renderPlot({
-  p <- ggplot(data_dendr()$segments) +
-    geom_segment(aes(x = x, y = y, xend = xend, yend = yend))+
-    geom_text(data = data_dendr()$labels, aes(x, y, label = label),
-              hjust = 1, angle = 90, size = 3)
-  return(p)
+
+  if(!is.null(datasetInput())){
+    p <- ggplot(data_dendr()$segments) +
+      geom_segment(aes(x = x, y = y, xend = xend, yend = yend))+
+      geom_text(data = data_dendr()$labels, aes(x, y, label = label),
+                hjust = 1, angle = 90, size = 3)
+    return(p)
+    
+  }else{ nPlot() }
+  
 })
 
 

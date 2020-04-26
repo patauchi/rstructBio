@@ -27,10 +27,10 @@ ext_summarySpecies <- eventReactive(input$run_plotSFD, {
 
 # plot histgram
 output$histgram <- renderPlot({
-
-  abss <- ext_summarySpecies()[[3]]
-
-  plot(abss)
+  if(!is.null(datasetInput())){
+    abss <- ext_summarySpecies()[[3]]
+    plot(abss)
+  }else{ nPlot() }
 
 })
 
