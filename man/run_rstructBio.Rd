@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_rstructBio.R
 \name{run_rstructBio}
 \alias{run_rstructBio}
-\title{Function to run NicheToolBox shinyApp}
+\title{Function to run rstructBio shinyApp}
 \usage{
 run_rstructBio()
 }
@@ -11,5 +11,5 @@ This function initiates rstructBio GUI
 }
 \examples{
 # Run rstructBio package
-# run_rstructBio()
+# run_rstructBio() 
 }
