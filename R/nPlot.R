@@ -1,6 +1,12 @@
-#
+if (getRversion() >= "2.15.1") { utils::globalVariables(c('plot','text'))}
 
-
+#' Empty Plot
+#'
+#' @description Empty plot
+#'
+#' nPlot
+#'
+#' @details The function \code{nPlot} return empty plot.
 #' @export
 nPlot <- function(){
   messages <- "Load data"
