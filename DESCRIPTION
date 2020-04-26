@@ -1,7 +1,7 @@
 Package: rstructBio
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
+Title: Structure Biological Data and Analysis
+Version: 0.1.0-0
 Author: P. Joser Atauchi
 Maintainer: P. Joser Atauchi <patauchi@gmail.com>
 Description: More about what it does (maybe more than one line)
@@ -12,3 +12,4 @@ LazyData: true
 dependency: shiny
 suggestions: shinybusy
 RoxygenNote: 7.1.0
+Importing: devtools, dplyr, ggplot2
