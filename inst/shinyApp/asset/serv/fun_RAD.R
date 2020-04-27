@@ -1,28 +1,32 @@
-#
-library(vegan)
-library(ggplot2)
-
-#dat <- read.csv('/Users/JoserAtauchi/Desktop/species2.csv')
-
 observe({
-  var_suggest <- rownames(df_products_upload())
-
+  var_suggest <- colnames(Data_analysis())
   updateSelectInput(session, "SiteComm",
-                    choices = rownames(df_products_upload()),
+                    choices = colnames(Data_analysis()),
                     selected = var_suggest)
-
 })
 
+ext_RAD <- eventReactive(input$run_RAD, {
+  if(!is.null(Data_analysis())) {
+    #outcomes <- rad.fit(Data_analysis())
+    
+    
+    dtr <- Data_analysis()
+    newdf  <- dtr %>% dplyr::select(all_of(input$SiteComm)) %>% as.data.frame()
+    
+    
+    
+    methcol <- input$RADMethods
+    if(input$RADIndex == 1){
+      RADexp <- rad.fit(newdf, plot = T, names = T, mixing = F, method = methcol)
+    }
+      
+    if(input$RADIndex == 2) {
+      RADexp <- rad.fit(newdf, plot = T, names = T, mixing = T, method = methcol)
+    }
+      
 
+    return(RADexp)
 
-
-
-
-ext_RAD <- eventReactive(input$run_calc_RAD, {
-  if(!is.null(df_products_upload())) {
-
-    outcomes <- rad.fit(df_products_upload())
-    return(outcomes)
   }else
     return(NULL)
 
@@ -30,66 +34,18 @@ ext_RAD <- eventReactive(input$run_calc_RAD, {
 
 
 
-
-
-
-
-
-
-
 output$RADvals <- DT::renderDataTable({
   dfDiver <- ext_RAD()[[1]]
   #dfDiver <- round(dfDiver, 3)
-  DT::datatable(dfDiver)
+  DT::datatable(dfDiver, options = list(scrollY = '280px', pageLength = 1000,
+                                    dom='t'))
 
 })
 
 
 output$plotRAD <- renderPlot({
   if(!is.null(ext_RAD())){
-    #plot(colnames(ext_diversity()),ext_diversity()[2,])
-    #colnmn <- as.numeric(input$varIndex)
+    return(ext_RAD())
 
-  methcol <- input$RADMethods
-
-
-  if(input$RADIndex == 1)
-    RADexp <- rad.fit(df_products_upload(), plot = T, names = T, mixing = F, method = methcol)
-  if(input$RADIndex == 2)
-    RADexp <- rad.fit(df_products_upload(), plot = T, names = T, mixing = T, method = methcol)
-
-    return(RADexp)
-
-  }else{
-    messages <- "Load data"
-    x <- -10:10
-    y <- x
-    plot(x,y,type="n", xlab="No Data", ylab="No data",cex=2)
-    text(0,0,messages,cex=3 )
-  }
+  }else{ nPlot()}
 })
-
-
-output$RADEach <- renderPlot({
-
-  if(!is.null(datasetInput())){
-    #methcol <- input$RADMethods
-    compl <- do.call(rbind, ext_RAD())
-    widedata <-  compl %>% filter(Community == input$SiteComm) %>% select("Ranks", input$RADMethods)
-    #longdata <- data.table::melt(widedata, id.vars="Ranks", value.name="Value_y")
-    colnames(widedata)  <- c('Ranks','Value_y')
-    fixPlo <- ggplot(data=widedata, aes_string(x="Ranks",y="Value_y")) +
-      geom_point() + ylab(paste(input$RADMethods))
-    #fixPlo <- compl %>% filter(Community == input$SiteComm) %>% ggplot(aes(x=Ranks, y=input$RADMethods)) + geom_point()
-    return(fixPlo)
-  }else{ nPlot() }
-  
-  
-
-})
-
-
-
-
-
-

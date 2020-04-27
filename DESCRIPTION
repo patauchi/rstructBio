@@ -1,11 +1,11 @@
 Package: rstructBio
 Type: Package
-Title: Analysis of Communities Structure from Ecological Data
-Version: 0.1.0-1
+Title: Analysis of Ecological Data in a Friendly GUI Envrionment
+Version: 1.1.0-2
+Date: 2020-04-27
 Author: P. Joser Atauchi
 Maintainer: P. Joser Atauchi <patauchi@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting     paragraphs within the Description.
+Description: ShinyApp focus on ecology, univariate and multivariate analysis for ecological data.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

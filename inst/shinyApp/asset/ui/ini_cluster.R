@@ -2,26 +2,18 @@ layer_names_kmeans <- c("Extract sites "=1)
 
 ini_Cluster <- sidebarLayout(position = 'left',
                          sidebarPanel(
-                           h3("Diversity Index"),
+                           h3("Cluster Analysis"),
                            br(),
                            p("This application was create to analyze and visualize ecological data",
                              style="font-size:13px"),
                            p(""),
                            br(),
-                           #textInput("name","Enter your name", ""),
-                           #textInput("age","Enter your age",""),
 
-
-                           h4("data Loading"),
-                           selectInput("datasets",
-                                       label="Choose a dataset :",
-                                       choices=c("Species", "Environmental")),
-
-                           h4("Diversity Plot"),
+                           h4("Standarization Data"),
                            p("This application was create to analyze and visualize ecological data",
                              style="font-size:13px"),
 
-                           selectInput("StandMethods", "Select the Standardization Methods",
+                           selectInput("StandMethods", "Choosing method for data standarization",
                                        choices = c("Total"="total",
                                                    "Maximum"="max",
                                                    "Frequency"="frequency",
@@ -34,11 +26,11 @@ ini_Cluster <- sidebarLayout(position = 'left',
                                                    "Logaritmico" = "log")),
 
 
-                           h4("Diversity Plot"),
+                           h4("Distance Computation"),
                            p("This application was create to analyze and visualize ecological data",
                              style="font-size:13px"),
 
-                           selectInput("DistanceMethod", "Select the diverisity index",
+                           selectInput("DistanceMethod", "Choosing distance method",
                                        choices = c("Manhattan"="manhattan",
                                                    "Euclidean"="euclidean",
                                                    "Camberra"="camberra",
@@ -56,11 +48,11 @@ ini_Cluster <- sidebarLayout(position = 'left',
                                                    "Chao"="chao",
                                                    "Mahalanobis"="mahalanobis")),
 
-                           h4("Diversity Plot"),
+                           h4("Clustering Algorithm"),
                            p("This application was create to analyze and visualize ecological data",
                              style="font-size:13px"),
 
-                           selectInput("ClustMethods", "Select the diverisity index",
+                           selectInput("ClustMethods", "Choosing the right algorithm",
                                        choices = c("Ward D"="ward.D",
                                                    "Ward D2"="ward.D2",
                                                    "Single"="single",
@@ -70,14 +62,11 @@ ini_Cluster <- sidebarLayout(position = 'left',
                                                    "WPGMC"="median",
                                                    "UPGMC"="centroid")),
 
-                           actionButton("run_dendro","Go!!!",styleclass = "primary"),
-                           shinysky::busyIndicator("Loading...",wait = 0),
+                           shinyBS::bsButton("run_cluster",  "Run",   icon = icon("upload", lib = "glyphicon"),  style = "primary"),
+                           br(),
                            width=4),
                          mainPanel(
-                           #DT::dataTableOutput("user_table"),
-                           #textOutput("myname"),
-                           #textOutput("myage")
-                           h4("Dendrogram"),
+                           h4("Output Clustering", align='center'),
                            br(),
                            plotOutput('plotDendro')
                          ))

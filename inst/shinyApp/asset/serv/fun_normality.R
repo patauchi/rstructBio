@@ -1,44 +1,27 @@
 # Return the requested dataset ----
-datasetInput <- reactive({
-  switch(input$dataset,
-         "Species" = df_products_upload(),
-         "Environmental" = df_env())
-})
 
 observe({
-
-  if(input$dataset == "Species"){
-    var_suggest <- rownames(df_products_upload())
-    updateSelectInput(session, "VariableSet",
-                      choices = rownames(df_products_upload()),
-                      selected = var_suggest)
-  }
-  if(input$dataset == "Environmental"){
-    var_suggest <- colnames(df_env())
-    updateSelectInput(session, "VariableSet",
-                      choices = colnames(df_env()),
-                      selected = var_suggest)
-  }
-
+  var_suggest <- colnames(Data_analysis())
+  updateSelectInput(session, "SetsNormality",
+                    choices = colnames(Data_analysis()),
+                    selected = var_suggest)
 })
 
-eachVar <- reactive({
-  x    <- datasetInput()
-  if(input$dataset == "Species"){ x <- x[input$VariableSet, ]
-  x <- as.numeric(x)}
-  if(input$dataset == "Environmental"){x <- x[,input$VariableSet]}
-  return(x)
 
+eachVar <- eventReactive(input$run_normality,{
+  if(!is.null(Data_analysis())) {
+    DF_plot <- Data_analysis() %>% select(all_of(input$SetsNormality)) %>% as.data.frame()
+    return(DF_plot)
+  }else
+    return(NULL)
+  
 })
+
 
 
 output$histogramPlot <- renderPlot({
-  if(!is.null(datasetInput())) {
-
-
-    dat <- data.frame(norms=eachVar())
-
-   # bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  if(!is.null(Data_analysis())) {
+    dat <- data.frame(norms=eachVar()[,1])
 
     g <-  ggplot(data = dat, aes(x = norms)) +
       geom_histogram(aes(y = ..density.., fill = ..count..), binwidth = input$bins) +
@@ -54,28 +37,20 @@ output$histogramPlot <- renderPlot({
 
 })
 
-require(qqplotr)
-
-
-#output$test <- renderPrint({
-#  x    <- datasetInput()
-#  class(x)
-
-#})
 
 output$QQplotEnv <- renderPlot({
-  if(!is.null(datasetInput())){
+  if(!is.null(Data_analysis())){
 
-    dat <- data.frame(norm=eachVar())
-    qq <- qqplotr::qqPlot(dat[,1], pch = 16, col = c("#178A56AA"), col.lines = 6, cex = 1.5, main = "NORMAL Q-Q PLOT", id = F )
+    dat <- data.frame(norms=eachVar()[,1])
+    qq <- car::qqPlot(dat[,1], pch = 16, col = c("#178A56AA"), 
+                col.lines = 8, cex = 1.3,id = T )
+    
     return(qq)
 
   }else{ nPlot() }
 
 
 })
-
-
 
 
 
@@ -100,10 +75,8 @@ return(messPrin)
 }
 
 
-
-
-Exp_NormTes <- reactive({
-  ev<- eachVar()
+Exp_NormTest <- eventReactive(input$run_normality, {
+  ev<- eachVar()[,1]
   if(input$Normal_test=='shapiro') {t <- shapiro.test(ev)}
   if(input$Normal_test=='anderson') {t <- nortest::ad.test(ev)}
   if(input$Normal_test=='cramer') {t <- nortest::cvm.test(ev)}
@@ -120,8 +93,6 @@ Exp_NormTes <- reactive({
 })
 
 output$renderTest <- renderPrint({
-  Exp_NormTes()
+  Exp_NormTest()
 })
-
-
 

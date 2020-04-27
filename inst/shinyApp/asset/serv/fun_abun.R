@@ -16,7 +16,6 @@ df_products_upload <- reactive({
 
 })
 
-
 output$UploadTable <- DT::renderDataTable({
   dat <- df_products_upload()
   DT::datatable(dat, options = list(scrollY = '280px', pageLength = 1000,
@@ -56,7 +55,4 @@ output$AbundSummary <- renderPrint({
 }
   
 })
-
-
-
 

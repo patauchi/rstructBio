@@ -1,3 +1,4 @@
+osSystem <- Sys.info()["sysname"]
 
 ini_summary <- sidebarLayout(position = 'left',
                              sidebarPanel(
@@ -7,9 +8,14 @@ ini_summary <- sidebarLayout(position = 'left',
                                  style="font-size:13px"),
                                p(""),
                                br(),
+                               # Add Statistics
+                               
+                               
+                               # End statistics
+                               
                                width=4),
                              mainPanel(
-                               h4("Univariate statistics"),
+                               h4("Univariate statistics", align='center'),
                                br(),
                                dataTableOutput("SummaryStats"),
                              ))

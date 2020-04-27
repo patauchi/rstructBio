@@ -1,66 +1,78 @@
 # datasetInput
-datasetInput <- reactive({
-  switch(input$datasetBx,
-         "Species" = df_products_upload(),
-         "Environmental" = df_env())
-})
-
 observe({
-  if(input$datasetBx == "Species"){
-    var_suggest <- rownames(df_products_upload())
-    updateSelectInput(session, "SetsHist",
-                      choices = rownames(df_products_upload()),
-                      selected = var_suggest)
-  }
-  if(input$datasetBx == "Environmental"){
-    var_suggest <- colnames(df_env())
-    updateSelectInput(session, "SetsHist",
-                      choices = colnames(df_env()),
-                      selected = var_suggest)
-  }
+  var_suggest <- colnames(Data_analysis())
+  updateSelectInput(session, "SetsHist",
+                    choices = colnames(Data_analysis()),
+                    selected = var_suggest)
 })
 
+ext_StructHist <- reactive({
+  if(!is.null(Data_analysis())) {
 
+    DF_plot <- gather(Data_analysis(), key="key", valu="value")
 
-
-
-ext_summarySpecies <- eventReactive(input$run_plotSFD, {
-  if(!is.null(df_products_upload())) {
-
-    outcomes <- list()
-
-    min_max_comm <- range(df_products_upload())
-    min_max_species <- apply(df_products_upload(), 2, range)
-    ab <- table(unlist(df_products_upload()))
-
-
-    outcomes[[1]]  <- min_max_comm
-    outcomes[[2]]  <- min_max_species
-    outcomes[[3]]  <- ab
-
-    return(outcomes)
+    return(DF_plot)
   }else
     return(NULL)
 
 })
 
 
+data_ToHistogram <- eventReactive(input$run_histogram,{
+  if(!is.null(ext_StructHist())) {
+    Df_filtered <- ext_StructHist()[ext_StructHist()$key %in% input$SetsHist, ]
+    return(Df_filtered)
+  }else
+    return(NULL)
+  
+})
 
 
-
-
-
-
-
-
-
-# plot histgram
-output$histgram <- renderPlot({
-  if(!is.null(datasetInput())){
-    abss <- ext_summarySpecies()[[3]]
-    suppressWarnings(plot(abss))
+output$GHistogram <- renderPlot({
+  if(!is.null(Data_analysis())){
+    # Select communities
+    barfill <- "#4271AE"
+    barlines <- "#1F3552"
+    pg <- ggplot(ext_StructHist(), aes(x = value)) +
+      geom_histogram(aes(y = ..count..), binwidth = 1,
+                     colour = barlines, fill = barfill) +
+      scale_x_continuous(name = "Mean ozone in\nparts per billion",
+                         breaks = seq(0, 175, 25)) +
+      scale_y_continuous(name = "Count") +
+      theme_bw()
+    return(pg)
   }else{ nPlot() }
 
+})
+
+
+
+output$ConjunHistogram <- renderPlot({
+  if(!is.null(Data_analysis())){
+    barfill <- "#4271AE"
+    barlines <- "#1F3552"
+    # Select communities
+    pu <- ggplot(data_ToHistogram(), aes(x = value)) +
+      geom_histogram(aes(y = ..count..), binwidth = 1,
+                     colour = barlines, fill = barfill) +
+      scale_x_continuous(name = " ",
+                         breaks = seq(0, 175, 25)) +
+      scale_y_continuous(name = " ") +
+      facet_wrap(~ key, scales = "free", ncol = 3, strip.position = "left") +
+      theme_bw()+
+      theme(
+        aspect.ratio = 0.75,
+        strip.background = element_blank(),
+        strip.placement = "outside"
+      )
+    
+    
+    return(pu)
+    
+    
+    
+  }else{ nPlot() }
+  
 })
 
 
@@ -95,18 +107,4 @@ output$summaryRangeSp <- DT::renderDataTable({
 
 
 ##### BUG
-
-uiOutput("ui_bugfixer")
-# for server
-dt_bugfixer_counter <- 0
-output$ui_bugfixer <- renderUI({
-  dt_bugfixer_counter <<- dt_bugfixer_counter + 1
-  if (dt_bugfixer_counter == 1) {
-    invalidateLater(100, session)
-    dataTableOutput("summaryRangeSp", width = "100%")
-  } else {
-    NULL
-  }
-})
-
 

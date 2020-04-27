@@ -1,20 +1,15 @@
 
 ini_diversity <- sidebarLayout(position = 'left',
                              sidebarPanel(
-                               h3("Diversity Index"),
+                               h3("Alpha Diversity"),
                                br(),
                                p("This application was create to analyze and visualize ecological data",
                                  style="font-size:13px"),
                                p(""),
                                br(),
-                               h4("data Loading"),
-                               actionButton("run_calc_diversity","Go!!!",styleclass = "primary"),
-                               shinysky::busyIndicator("Loading...",wait = 0),
-
-                               h4("Diversity Plot"),
-                               p("This application was create to analyze and visualize ecological data",
-                                 style="font-size:13px"),
-
+                               
+                               
+                               h4("Diversity display"),
                                selectInput("varIndex", "Select the diverisity index",
                                            choices = c("Richness"=1,
                                                        "Abundance"=2,
@@ -22,16 +17,15 @@ ini_diversity <- sidebarLayout(position = 'left',
                                                        "Pilou_Eva"=4,
                                                        "Simpson"=5,
                                                        "InvSimpson"=6)),
+
+                               shinyBS::bsButton("run_diversity","Run", icon = icon("upload",lib = "glyphicon"), style = "primary"),
+                               
+                               br(),
                                width=4),
                              mainPanel(
-                               #DT::dataTableOutput("user_table"),
-                               #textOutput("myname"),
-                               #textOutput("myage")
-                               h4("Diversity Summary"),
+                               h4("Output Alpha Diversity", align='center'),
                                br(),
                                dataTableOutput("DiversityIndex"),
-                               br(),
-                               h4("Plot Comparing"),
                                br(),
                                plotOutput("plotDiversityComp")
 

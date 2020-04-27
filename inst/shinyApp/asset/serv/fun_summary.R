@@ -1,15 +1,14 @@
 #
-
 summaryDres <- reactive({
-  if(!is.null(df_products_upload())){
+  if(!is.null(Data_analysis())){
 
-    datwork <- df_products_upload()
+    datwork <- Data_analysis()
 
-    NcolD <- nrow(datwork)
-    namsCol  <- rownames(datwork)
+    NcolD <- ncol(datwork)
+    namsCol  <- colnames(datwork)
     ListSummary <- list()
     for(i in 1:NcolD){
-      valsDat <- datwork[i,]
+      valsDat <- datwork[ ,i]
       ColVame <- namsCol[i]
 
       N <- length(valsDat[valsDat!=0])
@@ -41,18 +40,14 @@ summaryDres <- reactive({
     out <- do.call(cbind, ListSummary)
     return(out)
   } else
-    return(NULL)
+    return(nPlot())
 })
 
 
-
-
-
-
-
 output$SummaryStats <- DT::renderDataTable({
-  daExport <- summaryDres()
-  DT::datatable(daExport)
+  dat <- summaryDres()
+  DT::datatable(dat, options = list(scrollY = '280px', pageLength = 1000,
+                                    dom='t'))
 })
 
 

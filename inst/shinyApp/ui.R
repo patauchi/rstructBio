@@ -8,8 +8,7 @@ shinyUI(
                p('ShinyApp: Ecological Analysis', style="font-size:15px;text-align:justify;"),
                tabPanel('Introduction', introduction),
                navbarMenu("Data",
-                          tabPanel('Species Abundance', ini_abun),
-                          tabPanel("Enviornmental Data", ini_env)),
+                          tabPanel('Importing dataset', ini_loadData)),
                navbarMenu("Exploratory Analysis",
                           tabPanel('Species Frecuency', ini_speciesFreq),
                           tabPanel("Testing for Outliers", ini_boxplot)),
@@ -25,9 +24,10 @@ shinyUI(
                           tabPanel("Rarefaction Plot", ini_rarefaction),
                           tabPanel("Rank Abundance Distribution", ini_RAD)),
                navbarMenu("Multivariate",
-                          tabPanel("Cluster", ini_Cluster),
-                          tabPanel("Unconstrained Ordination", ini_Unconstrained),
-                          tabPanel("Constrained Ordination"))
+                          tabPanel("Cluster", ini_Cluster)
+                          #tabPanel("Unconstrained Ordination", ini_Unconstrained),
+                          #tabPanel("Constrained Ordination")
+                          )
                )
 )
 

@@ -5,57 +5,40 @@ osSystem <- Sys.info()["sysname"]
 
 ini_collinearity <- sidebarLayout(position = "left",
                                   sidebarPanel(
-                                  h4("Niche layers"),
-                                  p(paste0("One ne of the most important",
-                                                    "things for your data analysis",
-                                                    " in NTB is to select the folder",
-                                                    " with the raster layers that you",
-                                                    "will use as niche variables.")),
+                                  h3("Correlations"),
+                                  p(paste0("One ne of the most important")),
                                   br(),
-                                  p("Please select the folder of raster",
-                                             " layers; notice that all of them",
-                                             " need to be in the same resolution",
-                                             " and extension."),
-                                  p("The supported raster formats are: ",".asc",
-                                             ".bil",",",".tif",",",".nc.",
-                                             ",",".sdat",",",".img"),
-                                  br(),
-                                           #directoryInput('ras_layers_directory', label = 'Select a raster layers directory'),
-                                  h4("Dataset"),
-
-                                  selectInput("datasetBx",
-                                              label="Choose a dataset :",
-                                              choices=c("Species", "Environmental")),
-                                  selectInput("SetsBox","Select at Community",
+                                  selectInput("SetsColinearity","Select at variable",
                                               choices = vars_names,
                                               multiple = TRUE),
-
-
-                                           ############################## BEGIN CAPSULES
-                                  checkboxInput("getCorrelation",label = "Correlation",value = FALSE),
-                                  conditionalPanel("input.getCorrelation == true",
-                                                  shiny::radioButtons("wc_resol",
-                                                  label =  "Select a resolution",
+                                  
+                                  shiny::radioButtons("correlationMethod", label =  "Select a Method",
                                                   choices = c('Pearson '='pearson',
                                                               'Spearman'='spearman',
                                                               'Kendall Mann'='kendall')),
-                                            br(),
-                                            shinyBS::bsButton("loadNicheLayers",
-                                                     "Load niche layers",
-                                                      icon = icon("upload",
-                                                      lib = "glyphicon"),
-                                                      style = "primary"),
-                                            shinysky::busyIndicator("Loading...",wait = 0),
-                                            br()),
-                                           ############################## END CAPSULES
-                                           br(),
+                                  ############################## BEGIN CAPSULES
+                                  checkboxInput("geDisplay",label = "Advanced display",value = FALSE),
+                                  conditionalPanel("input.geDisplay == true",
+                                                   shiny::radioButtons("DiplayCor",
+                                                                       label =  "Choose display method",
+                                                                       choices = c('Matrix  '='matrix',
+                                                                                   'Network'='network',
+                                                                                   'Circle'='circle')),
+                                                   br(),
+                                                   
+                                                   br()),
+                                  ############################## END CAPSULES
+                                  
+
+                                  shinyBS::bsButton("run_collinearity",
+                                                    "Run",
+                                                    icon = icon("upload",
+                                                                lib = "glyphicon"),
+                                                    style = "primary"),
+                                  shinysky::busyIndicator("Loading...",wait = 0),         
+                                  br(),
                                   width=4),
                                          mainPanel(
-                                           #htmlOutput("page"),
-                                           #plotOutput("niche_layers"),
-                                           conditionalPanel("input.load_projLayers == true ||
-                                              input.load_projLayers_win == true",
-                                                        #    plotOutput("niche_layers_proj")
-                                           )
+                                           plotOutput('OutputDisplayCor')
                                          )
 )

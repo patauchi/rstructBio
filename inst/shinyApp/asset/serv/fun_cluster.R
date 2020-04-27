@@ -1,39 +1,27 @@
- #
-
-datasetInputs <- reactive({
-  switch(input$datasets,
-         "Species" = df_products_upload(),
-         "Environmental" = df_env())
-})
-
-
-
-ext_DataDend <- eventReactive(input$run_dendro, {
-  spe.norm <- decostand(datasetInputs(), input$StandMethods)
+ ext_DataDend <- eventReactive(input$run_cluster, {
+   
+   DistMeUP <- t(Data_analysis())
+   
+  spe.norm <- decostand(DistMeUP, input$StandMethods)
   spe.ch <- vegdist(spe.norm, input$DistanceMethod)
   spe.ch.single <- hclust(spe.ch, method = input$ClustMethods)
   return(spe.ch.single)
 })
 
-data_dendr <- reactive({
+data_dendr <- eventReactive(input$run_cluster, {
   dend <- as.dendrogram(ext_DataDend())
-  dend_data <- ggdendro::dendro_data(dend, type = "rectangle")
-  return(dend_data)
+  p <- dend %>% 
+    set("leaves_pch", 19)  %>% 
+    set("leaves_cex", 0.7) %>% 
+    set("leaves_col", "skyblue")
+  return(p)
 })
 
 
 output$plotDendro <- renderPlot({
-
-  if(!is.null(datasetInput())){
-    p <- ggplot(data_dendr()$segments) +
-      geom_segment(aes(x = x, y = y, xend = xend, yend = yend))+
-      geom_text(data = data_dendr()$labels, aes(x, y, label = label),
-                hjust = 1, angle = 90, size = 3)
-    return(p)
-    
+  if(!is.null(Data_analysis())){
+    return(plot(data_dendr()))
   }else{ nPlot() }
   
 })
-
-
 

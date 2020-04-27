@@ -15,6 +15,6 @@ introduction <- sidebarLayout(position = 'left',
                                #DT::dataTableOutput("user_table"),
                                #textOutput("myname"),
                                #textOutput("myage")
-                               h3('Analysis of Ecological Data'),
+                               h3('Analysis of Ecological Data', align='center'),
 
                              ))

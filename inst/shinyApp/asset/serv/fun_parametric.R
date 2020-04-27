@@ -1,45 +1,51 @@
-
 #
-datasetInputPar <- reactive({
-  switch(input$datasetParam,
-         "Species" = df_products_upload(),
-         "Environmental" = df_env())
-})
-
 observe({
-  if(input$datasetParam == "Species"){
-    var_suggest <- rownames(df_products_upload())
-    updateSelectInput(session, "SetsVarsTests",
-                      choices = rownames(df_products_upload()),
-                      selected = var_suggest)
-  }
-  if(input$datasetParam == "Environmental"){
-    var_suggest <- colnames(df_env())
-    updateSelectInput(session, "SetsVarsTests",
-                      choices = colnames(df_env()),
-                      selected = var_suggest)
-  }
-
+  var_suggest <- colnames(Data_analysis())
+  updateSelectInput(session, "SetsVarsTests",
+                    choices = colnames(Data_analysis()),
+                    selected = var_suggest)
 })
 
 
+ParametricOutput <- eventReactive(input$run_parametric, {
+  dtr <- Data_analysis()
+  newdf  <- dtr %>% dplyr::select(all_of(input$SetsVarsTests)) %>% as.data.frame()
+  ev <- newdf
+  
+  
+  if(input$getMeans){
+    if(input$parammeans=='ttestOne') {
+      t <- t.test(ev, mu = input$muTestOne, alternative = "two.sided")
+    }
+    if(input$parammeans=='ttestTwo') {
+      t <- t.test(as.numeric(ev[ ,1]), as.numeric(ev[ ,2]))
+    }
+  }
+  
+  if(input$getVariance){
+    if(input$paramvars=='oneSampleVar') {
+      t <- DescTools::VarTest(ev[,1], sigma.squared = input$muSigTestOneVar)
+    }
+    if(input$paramvars=='twoSampleVar') {
+      t <- DescTools::VarTest(as.numeric(ev[,1]), as.numeric(ev[,2]))
+    }
+    if(input$paramvars=='kSampleVar') {
+      colNE <- colnames(ev)
+      newDF <- tidyr::gather(ev, key='key', value='value', all_of(colNE))
+      t <- bartlett.test(as.numeric(newDF[,2]), as.factor(newDF[,1]))
+    }
+  }
 
-
-DatbleToTest <- reactive({
-  if(input$datasetBx == "Species"){
-    dtr <- t(datasetInputPar())
-    dtr <- as.data.frame(dtr)
-  } else{dtr <- datasetInputPar()}
-  newdf  <- dtr %>% dplyr::select(input$SetsVarsTests) %>% as.data.frame()
-  return(newdf)
+  mt <- t$method
+  pv <- t$p.value
+  return(testResParametric(test=mt, pval=pv))
+  
 })
-
-
 
 testResParametric <-  function(test, pval){
   messPrin <- capture.output({
     cat('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n')
-    cat('                          Analysis of Parametric Tests                              \n')
+    cat('                                  Parametric Tests                                 \n')
     cat('                                                                                    \n')
     cat('                ', test, '                                  \n\n')
     cat('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n')
@@ -57,58 +63,11 @@ one should reject the null hypothesis H0, and accept the alternative hypothesis 
   return(messPrin)
 }
 
-Exp_NormTesMeans <- eventReactive(input$runParMeans, {
-  ev <- DatbleToTest()
-  if(input$test_MeanParam=='ttestOne') {
-    t <- t.test(ev, mu = input$muTestOne, alternative = "two.sided")
-  }
-  if(input$test_MeanParam=='ttestTwo') {
-    t <- t.test(as.numeric(ev[ ,1]), as.numeric(ev[ ,2]))
-  }
-  mt <- t$method
-  pv <- t$p.value
-  return(testResParametric(test=mt, pval=pv))
-})
-
-output$renderTestParametric <- renderPrint({Exp_NormTesMeans()})
+output$renderTestParametric <- renderPrint({ParametricOutput()})
 
 
 
 
-
-
-
-
-
-Exp_TestVariance <- eventReactive(input$runParVariance, {
-  ev <- DatbleToTest()
-
-  if(input$test_VarParam=='oneSampleVar') {
-
-    t <- DescTools::VarTest(ev, sigma.squared = input$muSigTestOneVar)
-
-  }
-  if(input$test_VarParam=='twoSampleVar') {
-
-    t <- DescTools::VarTest(as.numeric(ev[,1]), as.numeric(ev[,2]))
-
-  }
-  if(input$test_VarParam=='kSampleVar') {
-
-    colNE <- colnames(ev)
-    newDF <- tidyr::gather(ev, key='key', value='value', colNE)
-    t <- bartlett.test(as.numeric(newDF[,2]), as.factor(newDF[,1]))
-
-  }
-
-  mt <- t$method
-  pv <- t$p.value
-  return(testResParametric(test=mt, pval=pv))
-})
-
-
-output$renderTestParametric <- renderPrint({Exp_NormTesMeans()})
-output$renderVarianceParametric <- renderPrint({Exp_TestVariance()})
 
 
 

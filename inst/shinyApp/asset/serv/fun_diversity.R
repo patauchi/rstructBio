@@ -1,22 +1,18 @@
-#
-library(vegan)
-library(ggplot2)
-
-#dat <- read.csv('/Users/JoserAtauchi/Desktop/species2.csv')
-
-
-ext_diversity <- eventReactive(input$run_calc_diversity, {
-  if(!is.null(df_products_upload())) {
-    Richness <- apply(df_products_upload()>0,1,sum)
-    Abundance <- apply(df_products_upload(),1, sum)
-    Shannon <- vegan::diversity(df_products_upload())
+ext_diversity <- eventReactive(input$run_diversity, {
+  if(!is.null(Data_analysis())) {
+    
+    newDiv <- t(Data_analysis())
+    
+    Richness <- apply(newDiv>0,1,sum)
+    Abundance <- apply(newDiv,1, sum)
+    Shannon <- vegan::diversity(newDiv)
     Pilou_Eva <- Shannon/log(Richness) * 100
-    Simpson <- vegan::diversity(df_products_upload(), "simpson")
-    InvSimpson <- vegan::diversity(df_products_upload(), "inv")
+    Simpson <- vegan::diversity(newDiv, "simpson")
+    InvSimpson <- vegan::diversity(newDiv, "inv")
 
 
     df.Diver <- rbind(Richness,Abundance, Shannon, Pilou_Eva,Simpson, InvSimpson)
-    colnames(df.Diver) <- rownames(df_products_upload())
+    colnames(df.Diver) <- rownames(newDiv)
     df.Diver <- round(df.Diver, 3)
 
     return(df.Diver)
@@ -27,8 +23,11 @@ ext_diversity <- eventReactive(input$run_calc_diversity, {
 
 output$DiversityIndex <- DT::renderDataTable({
   dfDiver <- ext_diversity()
-  DT::datatable(dfDiver)
+  DT::datatable(dfDiver, options = list(scrollY = '280px', pageLength = 1000,
+                                    dom='t'))
 })
+
+
 
 
 output$plotDiversityComp <- renderPlot({
@@ -56,13 +55,7 @@ output$plotDiversityComp <- renderPlot({
     q <- p + geom_point(shape = 17, size=2) + theme_bw()
     return(q)
 
-  }else{
-    messages <- "Load data"
-    x <- -10:10
-    y <- x
-    plot(x,y,type="n", xlab="No Data", ylab="No data",cex=2)
-    text(0,0,messages,cex=3 )
-  }
+  }else{ nPlot()}
 })
 
 
