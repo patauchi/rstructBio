@@ -1,9 +1,5 @@
 osSystem <- Sys.info()["sysname"]
 
-#dataset <- list('Upload your data'= c(1))
-layers_names_vars <- c("Extract sites "=1)
-
-
 ini_normality <- sidebarLayout(position = 'left',
                          sidebarPanel(
                            h3("Normality Test"),
@@ -14,7 +10,7 @@ ini_normality <- sidebarLayout(position = 'left',
                            br(),
 
                            selectInput("SetsNormality","Select at variable",
-                                       choices = layers_names_vars,
+                                       choices = vars_names,
                                        multiple = FALSE),
 
 
