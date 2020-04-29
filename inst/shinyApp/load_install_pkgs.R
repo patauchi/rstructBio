@@ -12,20 +12,6 @@ suppressPackageStartupMessages({
 })
 
 
-pkg_check2 <- c("shinysky")
-
-pkgs_ntb_miss2 <- pkg_check2[!(pkg_check2 %in% installed.packages())]
-
-if(!identical(pkgs_ntb_miss2 , character(0))){
-  if (require(remotes)) install.packages("remotes")#if not already installed
-  remotes::install_github("AnalytixWare/ShinySky")
-}
-
-suppressPackageStartupMessages({
-  loadntbPkg2 <- sapply(pkg_check2,function(x) library(x,character.only = TRUE))
-})
-
-
 
 # Load packages
 options(rgl.useNULL=TRUE)
