@@ -1,7 +1,7 @@
 Package: rstructBio
 Type: Package
 Title: Analysis of Ecological Data in a Friendly GUI Envrionment
-Version: 1.1.0-2
+Version: 1.1.0-3
 Date: 2020-04-27
 Author: P. Joser Atauchi
 Maintainer: P. Joser Atauchi <patauchi@gmail.com>
@@ -12,4 +12,3 @@ LazyData: true
 dependency: shiny
 suggestions: shinybusy
 RoxygenNote: 7.1.0
-Imports: devtools, dplyr, ggplot2, shiny, shinyBS, iNEXT,normtest,DT,tidyr,DescTools,vegan,dendextend,qgraph,corrplot
