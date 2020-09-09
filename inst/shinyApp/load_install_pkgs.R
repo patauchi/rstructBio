@@ -1,5 +1,5 @@
 pkg_check <- c("shiny","ggplot2","shinyBS","dplyr","devtools","iNEXT",'normtest','DT',
-               'tidyr','DescTools','vegan','dendextend', 'qgraph','corrr','corrplot')
+               'tidyr','DescTools','vegan','dendextend', 'qgraph','corrr','corrplot','mnormt')
 
 pkgs_ntb_miss <- pkg_check[!(pkg_check %in% installed.packages())]
 

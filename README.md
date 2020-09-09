@@ -11,6 +11,25 @@
 [clang v.7.0.0](https://cran.r-project.org/bin/macosx/tools/clang-7.0.0.pkg)
 
 ```r
+# rstructBio depends from 
+install.package("shiny")
+install.package("shinyBS")
+install.package("shinythemes")
+install.package("car")
+install.package("normtest")
+install.package("mnormt")
+
+if (!require('devtools')) install.packages('devtools')
+devtools::install_github('AnalytixWare/ShinySky')
+
+if (!require('devtools')) install.packages('devtools')
+devtools::install_github('patauchi/rstructBio')
+
+# If you want to build vignette, install pandoc before and then
+devtools::install_github('patauchi/rstructBio',build_vignettes=TRUE)
+```
+
+```r
 if (!require('devtools')) install.packages('devtools')
 devtools::install_github('patauchi/rstructBio')
 # If you want to build vignette, install pandoc before and then
