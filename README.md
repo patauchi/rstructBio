@@ -22,11 +22,6 @@ install.package("mnormt")
 if (!require('devtools')) install.packages('devtools')
 devtools::install_github('AnalytixWare/ShinySky')
 
-if (!require('devtools')) install.packages('devtools')
-devtools::install_github('patauchi/rstructBio')
-
-# If you want to build vignette, install pandoc before and then
-devtools::install_github('patauchi/rstructBio',build_vignettes=TRUE)
 ```
 
 ```r
